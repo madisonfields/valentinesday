@@ -279,10 +279,9 @@ body{
 
 /* ---------- Your existing page styles (kept, slightly dreamy) ---------- */
 
-.masthead{
-  padding:28px 16px 14px;
-  display:flex;
-  justify-content:center;
+.masthead h1 {
+  font-size: clamp(56px, 8vw, 110px);
+  letter-spacing: 2px;
 }
 
 .masthead__inner{
