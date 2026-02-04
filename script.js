@@ -189,7 +189,21 @@ END:VCALENDAR`;
 
   respond("Calendar added to the props department.");
 }
+// RETURN TO TITLE CARD WHEN HEADER IS CLICKED
+const homeBtn = document.getElementById("homeBtn");
+const inviteSection = document.getElementById("invite");
+const titleCard = document.getElementById("titlecard");
 
+homeBtn.addEventListener("click", () => {
+  // Hide itinerary section
+  inviteSection.classList.add("hidden");
+
+  // Show title card again
+  titleCard.classList.remove("hidden");
+
+  // Scroll back to top smoothly
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
 function stampUTC() {
   const d = new Date();
   const pad = (n) => String(n).padStart(2, "0");
