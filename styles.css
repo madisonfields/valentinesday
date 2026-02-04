@@ -981,3 +981,8 @@ h2{
 .subtitle {
   letter-spacing: 3px;
 }
+/* Make "Be Mine?" smaller */
+#homeBtn {
+  font-size: clamp(28px, 5vw, 60px) !important;
+  line-height: 1.1;
+}
