@@ -9,19 +9,14 @@ const MAPS = {
   movie: "https://www.google.com/maps/search/?api=1&query=FilmKoepel%20De%20Koepel%20Haarlem",
 };
 
-// Music links (no audio hosted in repo; user-initiated playback)
 const MUSIC = {
-  // This is a generic Spotify search. If you want an exact Spotify track embed URL, I can tailor it,
-  // but you may need the track ID from Spotify.
   spotifySearch: "https://open.spotify.com/search/Let's%20Stay%20Together%20Al%20Green",
-  // Optional YouTube search fallback:
-  youtubeSearch: "https://www.youtube.com/results?search_query=Al+Green+Let%27s+Stay+Together",
 };
 
 const $ = (id) => document.getElementById(id);
 
 const btnOpen = $("btnOpen");
-const btnPeek = $("btnPeek");
+const btnHearts = $("btnHearts");
 const invite = $("invite");
 const titlecard = $("titlecard");
 const countdownEl = $("countdown");
@@ -39,7 +34,7 @@ const btnCopy = $("btnCopy");
 const btnMusic = $("btnMusic");
 const btnMusicStop = $("btnMusicStop");
 const btnMusicLink = $("btnMusicLink");
-const spotifyEmbed = $("spotifyEmbed");
+const playerBox = $("playerBox");
 
 // ---- Set links
 mapSpa.href = MAPS.spa;
@@ -71,16 +66,13 @@ function updateCountdown() {
   countdownEl.textContent = `${days}d ${pad(hours)}h ${pad(minutes)}m`;
 }
 
-// ---- Open / Preview
+// ---- Open
 btnOpen.addEventListener("click", () => {
   titlecard.classList.add("hidden");
   invite.classList.remove("hidden");
   invite.scrollIntoView({ behavior: "smooth", block: "start" });
-  burst("confetti", window.innerWidth * 0.5, 140, 26);
-});
-
-btnPeek.addEventListener("click", () => {
-  burst("spark", window.innerWidth * 0.5, 180, 16);
+  burst("hearts", window.innerWidth * 0.5, 140, 24);
+  burst("confetti", window.innerWidth * 0.5, 170, 16);
 });
 
 // ---- Notes toggles
@@ -88,26 +80,19 @@ document.querySelectorAll(".heart").forEach((b) => {
   b.addEventListener("click", () => {
     const id = b.dataset.unlock;
     const box = $(`unlock${id}`);
-    const open = !box.classList.contains("hidden");
-    if (open) {
+    const isOpen = !box.classList.contains("hidden");
+    if (isOpen) {
       box.classList.add("hidden");
     } else {
       box.classList.remove("hidden");
-      burst("spark", b.getBoundingClientRect().left + 20, b.getBoundingClientRect().top + 20, 14);
+      burst("hearts", b.getBoundingClientRect().left + 20, b.getBoundingClientRect().top + 20, 14);
     }
   });
 });
 
 // ---- RSVP
 btnYes.addEventListener("click", () => respond("Accepted. The picture proceeds as scheduled."));
-btnAlsoYes.addEventListener("click", () => respond("Accepted (alternative phrasing). Excellent."));
-
-function respond(text) {
-  reply.textContent = text;
-  reply.classList.remove("hidden");
-  reply.scrollIntoView({ behavior: "smooth", block: "center" });
-  burst("confetti", window.innerWidth * 0.5, window.innerHeight * 0.4, 40);
-}
+btnAlsoYes.addEventListener("click", () => respond("Accepted. Yas queen."));
 
 // ---- Copy
 btnCopy.addEventListener("click", async () => {
@@ -187,31 +172,32 @@ function cryptoRandom() {
   return Array.from(a).map((n) => n.toString(16)).join("");
 }
 
-// ---- Music (user-initiated). Uses YouTube embed as a practical “background music” method.
-// If you prefer Spotify-only, tell me and I’ll switch it.
-let musicIframe = null;
+function respond(text) {
+  reply.textContent = text;
+  reply.classList.remove("hidden");
+  reply.scrollIntoView({ behavior: "smooth", block: "center" });
+  burst("confetti", window.innerWidth * 0.5, window.innerHeight * 0.45, 26);
+  burst("hearts", window.innerWidth * 0.5, window.innerHeight * 0.45, 18);
+}
 
+// ---- Spotify player reveal
 btnMusic.addEventListener("click", () => {
-  // YouTube embed via search is not stable. Better: you paste the exact video ID you want.
-  // For now we open Spotify search in a new tab and also offer the optional Spotify embed panel.
-  window.open(MUSIC.spotifySearch, "_blank", "noopener,noreferrer");
-  respond("Soundtrack opened. Press play when ready.");
-
-  // Optional: If you find the Spotify track link, you can set an embed URL here:
-  // spotifyEmbed.src = "https://open.spotify.com/embed/track/TRACK_ID";
+  playerBox.classList.remove("hidden");
+  playerBox.scrollIntoView({ behavior: "smooth", block: "center" });
+  burst("hearts", window.innerWidth * 0.72, 140, 18);
+  respond("Soundtrack ready. Press play on the player.");
 });
 
 btnMusicStop.addEventListener("click", () => {
-  if (musicIframe) {
-    musicIframe.remove();
-    musicIframe = null;
-    respond("Soundtrack stopped. Silence restored.");
-  } else {
-    respond("Nothing is currently playing.");
-  }
+  playerBox.classList.add("hidden");
+  respond("Soundtrack paused. Dramatic silence.");
 });
 
-// ---- Minimal film-grain confetti / spark FX
+btnHearts.addEventListener("click", () => {
+  burst("hearts", window.innerWidth * 0.5, 120, 42);
+});
+
+// ---- Hearts + confetti FX
 const canvas = document.getElementById("fx");
 const ctx = canvas.getContext("2d");
 let particles = [];
@@ -232,16 +218,16 @@ function burst(kind, x, y, count) {
 
 function makeParticle(kind, x, y) {
   const angle = Math.random() * Math.PI * 2;
-  const speed = 1.5 + Math.random() * 4.5;
+  const speed = 1.4 + Math.random() * 5.2;
   return {
     kind,
     x, y,
     vx: Math.cos(angle) * speed,
-    vy: Math.sin(angle) * speed - (1.5 + Math.random() * 1.5),
-    life: 70 + Math.random() * 40,
-    s: 6 + Math.random() * 10,
+    vy: Math.sin(angle) * speed - (1.6 + Math.random() * 1.8),
+    life: 80 + Math.random() * 50,
+    s: 8 + Math.random() * 14,
     r: Math.random() * Math.PI * 2,
-    vr: (Math.random() - 0.5) * 0.18,
+    vr: (Math.random() - 0.5) * 0.2,
   };
 }
 
@@ -256,23 +242,14 @@ function tick() {
     p.y += p.vy;
     p.r += p.vr;
 
-    const a = Math.max(0, Math.min(1, p.life / 100));
+    const a = Math.max(0, Math.min(1, p.life / 120));
     ctx.globalAlpha = a;
 
-    if (p.kind === "confetti") drawConfetti(p.x, p.y, p.s, p.r);
-    else drawSpark(p.x, p.y, p.s, p.r);
+    if (p.kind === "hearts") drawHeart(p.x, p.y, p.s, p.r);
+    else drawConfetti(p.x, p.y, p.s, p.r);
   }
 
-  // light grain
-  ctx.globalAlpha = 0.06;
-  for (let i = 0; i < 90; i++) {
-    const gx = Math.random() * window.innerWidth;
-    const gy = Math.random() * window.innerHeight;
-    ctx.fillStyle = "rgba(0,0,0,1)";
-    ctx.fillRect(gx, gy, 1, 1);
-  }
   ctx.globalAlpha = 1;
-
   requestAnimationFrame(tick);
 }
 
@@ -280,20 +257,27 @@ function drawConfetti(x, y, s, r) {
   ctx.save();
   ctx.translate(x, y);
   ctx.rotate(r);
-  ctx.fillStyle = "rgba(31,42,46,.9)";
+  ctx.fillStyle = "rgba(31,42,46,.85)";
   ctx.fillRect(-s * 0.35, -s * 0.18, s * 0.7, s * 0.36);
   ctx.restore();
 }
 
-function drawSpark(x, y, s, r) {
+function drawHeart(x, y, s, r) {
   ctx.save();
   ctx.translate(x, y);
   ctx.rotate(r);
-  ctx.strokeStyle = "rgba(31,42,46,.85)";
-  ctx.lineWidth = 2;
+
+  ctx.fillStyle = "rgba(215,43,63,.85)";
   ctx.beginPath();
-  ctx.moveTo(-s, 0); ctx.lineTo(s, 0);
-  ctx.moveTo(0, -s); ctx.lineTo(0, s);
-  ctx.stroke();
+
+  const top = s * 0.15;
+  ctx.moveTo(0, top);
+  ctx.bezierCurveTo(0, -s * 0.30, -s * 0.55, -s * 0.30, -s * 0.55, top);
+  ctx.bezierCurveTo(-s * 0.55, s * 0.55, 0, s * 0.75, 0, s);
+  ctx.bezierCurveTo(0, s * 0.75, s * 0.55, s * 0.55, s * 0.55, top);
+  ctx.bezierCurveTo(s * 0.55, -s * 0.30, 0, -s * 0.30, 0, top);
+
+  ctx.closePath();
+  ctx.fill();
   ctx.restore();
 }
