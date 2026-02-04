@@ -190,16 +190,18 @@ END:VCALENDAR`;
   respond("Calendar added to the props department.");
 }
 // RETURN TO TITLE CARD WHEN HEADER IS CLICKED
-const homeBtn = document.getElementById("homeBtn");
-const inviteSection = document.getElementById("invite");
-const titleCard = document.getElementById("titlecard");
+document.addEventListener("DOMContentLoaded", () => {
+  const homeBtn = document.getElementById("homeBtn");
+  const inviteSection = document.getElementById("invite");
+  const titleCard = document.getElementById("titlecard");
 
-homeBtn.addEventListener("click", () => {
-  // Hide itinerary section
-  inviteSection.classList.add("hidden");
+  if (!homeBtn || !inviteSection || !titleCard) return;
 
-  // Show title card again
-  titleCard.classList.remove("hidden");
+  homeBtn.addEventListener("click", () => {
+    inviteSection.classList.add("hidden");   // hide itinerary
+    titleCard.classList.remove("hidden");   // show main page
+    titleCard.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 
   // Scroll back to top smoothly
   window.scrollTo({ top: 0, behavior: "smooth" });
