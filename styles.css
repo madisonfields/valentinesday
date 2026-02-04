@@ -136,43 +136,44 @@ body{
 .env-front{
   position:absolute; inset:0;
   border-radius: 26px;
-
-  background:
-    linear-gradient(180deg, rgba(255,45,111,.22), rgba(255,255,255,.55));
+  background: linear-gradient(180deg, rgba(255,45,111,.22), rgba(255,255,255,.55));
   border: 3px solid rgba(31,42,46,.90);
-
-  /* bigger geometry */
   clip-path: polygon(0 42%, 50% 78%, 100% 42%, 100% 100%, 0 100%);
+  z-index: 4;
 }
 
 .env-flap{
   position:absolute; inset:0;
   border-radius: 26px;
-
-  /* much redder flap */
   background: linear-gradient(180deg, rgba(215,43,63,.38), rgba(255,45,111,.18));
   border: 3px solid rgba(31,42,46,.90);
-
   clip-path: polygon(0 0, 100% 0, 50% 58%);
   transform-origin: top;
   transform: rotateX(0deg);
   transition: transform .85s ease;
+  z-index: 5;
 }
 
 .env-letter{
   position:absolute;
-  left: 28px; right: 28px;
-  top: 44px;
-  height: 270px;
+  left: 34px;
+  right: 34px;
+  top: 56px;
+
+  /* smaller + subtle, so it doesn't look like a big extra rectangle */
+  height: 210px;
   border-radius: 18px;
 
-  background: rgba(255,247,251,.96);
-  border: 3px solid rgba(31,42,46,.70);
-  box-shadow: 0 18px 32px rgba(0,0,0,.12);
+  background: rgba(255,255,255,.72);
+  border: none;              /* removes the outlined box */
+  box-shadow: 0 10px 18px rgba(0,0,0,.08);
 
-  transform: translateY(56px);
+  transform: translateY(70px);
   transition: transform .95s ease;
+
+  z-index: 2;
 }
+
 
 /* seal stays centered, but a bit lower so it reads nicer */
 .env-seal{
@@ -183,17 +184,15 @@ body{
   width: 74px;
   height: 74px;
   border-radius: 22px;
-
   display:grid;
   place-items:center;
-
   background: linear-gradient(180deg, rgba(215,43,63,.92), rgba(255,45,111,.88));
   color:white;
   font-size: 26px;
-
   border: 3px solid rgba(31,42,46,.90);
   box-shadow: 0 14px 26px rgba(0,0,0,.14);
   transition: opacity .4s ease, transform .25s ease;
+  z-index: 7;
 }
 
 .envelope:hover .env-seal{
@@ -210,15 +209,15 @@ body{
   text-transform:uppercase;
   letter-spacing:.16em;
   color: rgba(31,42,46,.88);
+  z-index: 8; /* always above */
 }
 
 .env-to{
   position:absolute;
-  top: 44px;
+  top: 62px;
   left:50%;
   transform: translateX(-50%);
   font-size: 13px;
-
   background: rgba(255,255,255,.72);
   padding: 10px 14px;
   border-radius: 999px;
@@ -227,12 +226,12 @@ body{
 }
 
 .env-from{
+  /* Use TOP instead of BOTTOM so it's not too low */
   position:absolute;
-  bottom: 150px; /* was 112px */
+  top: 160px; /* <-- move this up/down */
   left:50%;
   transform: translateX(-50%);
   font-size: 13px;
-
   background: rgba(255,255,255,.72);
   padding: 10px 14px;
   border-radius: 999px;
@@ -242,7 +241,7 @@ body{
 
 .env-hint{
   position:absolute;
-  bottom: 54px;
+  top: 268px;
   left:50%;
   transform: translateX(-50%);
   font-size: 12px;
