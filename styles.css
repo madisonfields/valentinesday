@@ -95,49 +95,65 @@ body{
   place-items:center;
   padding:24px;
   z-index:50;
-  background: radial-gradient(900px 680px at 50% 35%, rgba(255,255,255,.65), rgba(255,255,255,.15));
+
+  /* More red, more dreamy */
+  background:
+    radial-gradient(900px 680px at 50% 35%, rgba(255,255,255,.62), rgba(255,255,255,.12)),
+    radial-gradient(800px 600px at 30% 30%, rgba(215,43,63,.22), transparent 60%),
+    radial-gradient(900px 700px at 70% 70%, rgba(255,45,111,.18), transparent 60%);
   backdrop-filter: blur(10px);
 }
 
 .envelope-scene{
-  width:min(520px, 100%);
+  width:min(880px, 100%);
   text-align:center;
 }
 
 .envelope{
-  width: 360px;
-  max-width: 100%;
-  height: 240px;
+  /* BIGGER envelope */
+  width: 560px;
+  height: 360px;
+  max-width: 95vw;
+
   margin: 0 auto;
   position:relative;
   cursor:pointer;
   transform-style: preserve-3d;
   transition: transform .6s ease;
+
+  filter: drop-shadow(0 40px 70px rgba(0,0,0,.20));
 }
 
 .env-back{
   position:absolute; inset:0;
-  border-radius: 18px;
-  background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,209,220,.55));
-  border: 2px solid rgba(31,42,46,.85);
-  box-shadow: 0 30px 70px rgba(0,0,0,.18);
+  border-radius: 26px;
+
+  /* more red/pink */
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,209,220,.70));
+  border: 3px solid rgba(31,42,46,.90);
 }
 
 .env-front{
   position:absolute; inset:0;
-  border-radius: 18px;
+  border-radius: 26px;
+
   background:
-    linear-gradient(180deg, rgba(255,77,122,.18), rgba(255,255,255,.45));
-  border: 2px solid rgba(31,42,46,.85);
-  clip-path: polygon(0 40%, 50% 75%, 100% 40%, 100% 100%, 0 100%);
+    linear-gradient(180deg, rgba(255,45,111,.22), rgba(255,255,255,.55));
+  border: 3px solid rgba(31,42,46,.90);
+
+  /* bigger geometry */
+  clip-path: polygon(0 42%, 50% 78%, 100% 42%, 100% 100%, 0 100%);
 }
 
 .env-flap{
   position:absolute; inset:0;
-  border-radius: 18px;
-  background: linear-gradient(180deg, rgba(255,45,111,.28), rgba(255,255,255,.22));
-  border: 2px solid rgba(31,42,46,.85);
-  clip-path: polygon(0 0, 100% 0, 50% 55%);
+  border-radius: 26px;
+
+  /* much redder flap */
+  background: linear-gradient(180deg, rgba(215,43,63,.38), rgba(255,45,111,.18));
+  border: 3px solid rgba(31,42,46,.90);
+
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
   transform-origin: top;
   transform: rotateX(0deg);
   transition: transform .85s ease;
@@ -145,69 +161,100 @@ body{
 
 .env-letter{
   position:absolute;
-  left: 16px; right: 16px;
-  top: 26px;
-  height: 190px;
-  border-radius: 14px;
-  background: var(--paper);
-  border: 2px solid rgba(31,42,46,.70);
-  box-shadow: 0 12px 24px rgba(0,0,0,.10);
-  transform: translateY(34px);
+  left: 28px; right: 28px;
+  top: 44px;
+  height: 270px;
+  border-radius: 18px;
+
+  background: rgba(255,247,251,.96);
+  border: 3px solid rgba(31,42,46,.70);
+  box-shadow: 0 18px 32px rgba(0,0,0,.12);
+
+  transform: translateY(56px);
   transition: transform .95s ease;
 }
 
+/* seal stays centered, but a bit lower so it reads nicer */
 .env-seal{
   position:absolute;
   left:50%;
-  top: 118px;
+  top: 190px;
   transform: translateX(-50%);
-  width: 56px;
-  height: 56px;
-  border-radius: 18px;
+  width: 74px;
+  height: 74px;
+  border-radius: 22px;
+
   display:grid;
   place-items:center;
-  background: linear-gradient(180deg, rgba(215,43,63,.85), rgba(255,77,122,.75));
+
+  background: linear-gradient(180deg, rgba(215,43,63,.92), rgba(255,45,111,.88));
   color:white;
-  font-size: 22px;
-  border: 2px solid rgba(31,42,46,.85);
-  box-shadow: 0 10px 22px rgba(0,0,0,.12);
-  transition: opacity .4s ease;
+  font-size: 26px;
+
+  border: 3px solid rgba(31,42,46,.90);
+  box-shadow: 0 14px 26px rgba(0,0,0,.14);
+  transition: opacity .4s ease, transform .25s ease;
 }
 
+.envelope:hover .env-seal{
+  transform: translateX(-50%) translateY(-1px);
+}
+
+/* IMPORTANT FIX:
+   Place text explicitly so it never overlaps the seal. */
 .env-text{
   position:absolute;
   inset:0;
-  display:grid;
-  place-items:center;
-  gap:8px;
-  padding-top: 10px;
   pointer-events:none;
   font-weight:900;
   text-transform:uppercase;
-  letter-spacing:.14em;
-  color: rgba(31,42,46,.85);
+  letter-spacing:.16em;
+  color: rgba(31,42,46,.88);
 }
 
-.env-to, .env-from{
-  font-size: 12px;
-  background: rgba(255,255,255,.60);
-  padding: 8px 12px;
+.env-to{
+  position:absolute;
+  top: 44px;
+  left:50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+
+  background: rgba(255,255,255,.72);
+  padding: 10px 14px;
   border-radius: 999px;
-  border: 2px solid rgba(31,42,46,.85);
-  width: max-content;
+  border: 3px solid rgba(31,42,46,.90);
+  width:max-content;
+}
+
+.env-from{
+  position:absolute;
+  bottom: 112px; /* keeps it safely away from the seal */
+  left:50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+
+  background: rgba(255,255,255,.72);
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 3px solid rgba(31,42,46,.90);
+  width:max-content;
 }
 
 .env-hint{
-  margin-top: 12px;
-  font-size: 11px;
-  color: rgba(75,90,97,.85);
-  letter-spacing:.18em;
+  position:absolute;
+  bottom: 54px;
+  left:50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: rgba(75,90,97,.88);
+  letter-spacing:.22em;
 }
 
 .env-caption{
-  margin-top: 16px;
-  color: rgba(75,90,97,.85);
-  font-weight:700;
+  margin-top: 18px;
+  color: rgba(75,90,97,.88);
+  font-weight:800;
+  font-size: 18px;
 }
 
 /* opened state */
@@ -216,7 +263,7 @@ body{
 }
 
 .envelope.is-open .env-letter{
-  transform: translateY(-26px);
+  transform: translateY(-42px);
 }
 
 .envelope.is-open .env-seal{
