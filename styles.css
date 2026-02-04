@@ -228,7 +228,7 @@ body{
 
 .env-from{
   position:absolute;
-  bottom: 112px; /* keeps it safely away from the seal */
+  bottom: 150px; /* was 112px */
   left:50%;
   transform: translateX(-50%);
   font-size: 13px;
