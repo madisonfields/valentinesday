@@ -1,251 +1,225 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Romana, will you be my Valentine? 💘</title>
-    <link rel="stylesheet" href="styles.css" />
-    <meta name="description" content="A Valentine’s Day date invite in Haarlem: massage, dinner, and a movie." />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROMANA — A Small Valentine Picture</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="A Valentine invite in Haarlem: massage, dinner, film." />
+</head>
 
-  <body>
-    <div class="bg-hearts" aria-hidden="true"></div>
+<body>
+  <div class="paper" aria-hidden="true"></div>
 
-    <header class="topbar">
-      <div class="brand">
-        <span class="brand__dot" aria-hidden="true"></span>
-        <span>Romana’s Valentine Invite</span>
+  <header class="masthead">
+    <div class="masthead__inner">
+      <div class="stamp">Haarlem</div>
+      <div class="masthead__title">
+        <div class="suptitle">a small valentine picture, in three chapters</div>
+        <h1>ROMANA</h1>
+        <div class="subtitle">February 14 • 1:00 PM • Haarlem, NL</div>
       </div>
+      <div class="stamp">14 FEB</div>
+    </div>
+  </header>
 
-      <div class="topbar__actions">
-        <button class="ghost" id="btnHearts" type="button" title="Throw hearts">💞 Hearts</button>
-        <button class="ghost" id="btnConfetti" type="button" title="Celebrate">🎉 Confetti</button>
-      </div>
-    </header>
-
-    <main class="wrap">
-      <!-- ENVELOPE -->
-      <section class="card envelope" id="envelope" aria-label="Open invitation">
-        <div class="envelope__lid" aria-hidden="true"></div>
-        <div class="envelope__seal" aria-hidden="true">💌</div>
-
-        <div class="envelope__content">
-          <h1>Romana,</h1>
-          <p class="lead">
-            I built you a tiny interactive invitation because I want Valentine’s Day to feel like
-            <strong>our</strong> little movie — cozy, romantic, and perfectly us — right here in <strong>Haarlem</strong>.
+  <main class="frame">
+    <!-- TITLE CARD -->
+    <section class="card titlecard" id="titlecard">
+      <div class="titlecard__grid">
+        <div class="titlecard__left">
+          <div class="label">INVITATION</div>
+          <p class="lede">
+            Romana, I propose a calm, well-organized day with excellent pacing.
+            There will be warmth, good food, and one cinematic conclusion.
           </p>
 
-          <div class="ctaRow">
-            <button class="primary" id="btnOpen" type="button">Open the invitation ✨</button>
-            <button class="ghost" id="btnPeek" type="button">Peek (no spoilers 😄)</button>
+          <div class="actions">
+            <button class="btn btn-primary" id="btnOpen">Begin the picture</button>
+            <button class="btn" id="btnPeek">A quick preview</button>
           </div>
 
-          <p class="hint">
-            Tip: tap the heart icons on the itinerary to unlock sweet “moments.”
-          </p>
-        </div>
-      </section>
-
-      <!-- INVITE -->
-      <section class="card invite hidden" id="invite" aria-label="Valentine invitation details">
-        <div class="invite__head">
-          <div>
-            <h2>Valentine’s Day Date — Haarlem 💘</h2>
-            <p class="sub">
-              Saturday, <strong>February 14, 2026</strong> • starting at <strong>1:00 PM</strong>
-            </p>
-          </div>
-
-          <div class="countdown" aria-live="polite">
-            <div class="countdown__label">Countdown to our first stop</div>
-            <div class="countdown__time" id="countdown">—</div>
+          <div class="fineprint">
+            Runtime: approximately one pleasant evening. <br />
+            Dress code: whatever makes you feel like yourself.
           </div>
         </div>
 
-        <div class="divider"></div>
+        <div class="titlecard__right">
+          <div class="poster">
+            <div class="poster__inner">
+              <div class="poster__line">Featuring</div>
+              <div class="poster__name">Romana</div>
+              <div class="poster__line">and</div>
+              <div class="poster__name small">Me</div>
+              <div class="poster__foot">A Haarlem Production</div>
+            </div>
+          </div>
 
-        <section class="story">
-          <p>
-            Three chapters. One perfect day. We’ll start relaxed, then eat something delicious,
-            and end it under the dome with a film and a slow walk into the night.
+          <div class="soundtrack">
+            <div class="soundtrack__title">Soundtrack</div>
+            <div class="soundtrack__row">
+              <button class="btn btn-small" id="btnMusic">Play</button>
+              <button class="btn btn-small" id="btnMusicStop">Stop</button>
+              <a class="btn btn-small" id="btnMusicLink" target="_blank" rel="noreferrer">Open</a>
+            </div>
+            <div class="soundtrack__note">
+              “Let’s Stay Together” by Al Green <br />
+              Tap Play (browsers require a click).
+            </div>
+
+            <!-- Optional: keep this hidden by default. Toggle it on if you want the visible player. -->
+            <details class="player">
+              <summary>Show the player</summary>
+              <iframe
+                style="border-radius:14px"
+                src=""
+                width="100%"
+                height="152"
+                frameborder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                id="spotifyEmbed"
+                title="Spotify player"
+              ></iframe>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <section class="card hidden" id="invite">
+      <div class="intertitle">
+        <div class="intertitle__rule"></div>
+        <div class="intertitle__text">THE ITINERARY</div>
+        <div class="intertitle__rule"></div>
+      </div>
+
+      <div class="meta">
+        <div class="meta__pill">Location: Haarlem</div>
+        <div class="meta__pill">Start: 1:00 PM</div>
+        <div class="meta__pill">Status: deliberately unhurried</div>
+        <div class="meta__pill">Countdown: <span id="countdown">—</span></div>
+      </div>
+
+      <div class="chapters">
+        <!-- Chapter 1 -->
+        <article class="chapter">
+          <div class="chapter__head">
+            <div class="chapter__num">I</div>
+            <div class="chapter__titles">
+              <div class="chapter__kicker">Chapter One</div>
+              <h2>Five City Spa</h2>
+              <div class="chapter__sub">1:00 PM • one hour • three-minute walk</div>
+            </div>
+            <button class="heart" data-unlock="1" title="Open note">✶</button>
+          </div>
+
+          <p class="chapter__text">
+            A quiet beginning. A full-body massage. The kind of calm that makes the rest of the day feel easy.
           </p>
 
-          <div class="pillRow">
-            <span class="pill">🕯️ cozy</span>
-            <span class="pill">🌷 Haarlem</span>
-            <span class="pill">🍷 dinner</span>
-            <span class="pill">🎬 cinema</span>
-          </div>
-        </section>
-
-        <section class="timeline" aria-label="Itinerary timeline">
-          <!-- STOP 1 -->
-          <article class="stop" data-stop="1">
-            <div class="stop__time">
-              <div class="time">1:00 PM</div>
-              <div class="date">Feb 14</div>
-            </div>
-
-            <div class="stop__body">
-              <div class="stop__titleRow">
-                <h3>Five City Spa — “Five Full Body Massage” (1 hour)</h3>
-                <button class="heartBtn" type="button" data-unlock="1" title="Unlock moment 1">♡</button>
-              </div>
-
-              <p>
-                We kick off the day with a full reset: calm, warm, and quiet.
-                A little “pause button” before the rest of the romance.
-              </p>
-
-              <div class="mini">
-                <div class="mini__item">
-                  <span class="tag">Walk</span>
-                  <span>~3 minutes from our house</span>
-                </div>
-                <div class="mini__item">
-                  <span class="tag">Vibe</span>
-                  <span>soft music • relaxed smiles • zero rush</span>
-                </div>
-              </div>
-
-              <div class="links">
-                <a class="linkBtn" href="https://fivecityspa.nl/behandeling/five-full-body-massage/" target="_blank" rel="noreferrer">
-                  Massage page
-                </a>
-                <a class="linkBtn" id="mapSpa" target="_blank" rel="noreferrer">Open in Maps</a>
-              </div>
-
-              <div class="unlock hidden" id="unlock1">
-                <div class="unlock__badge">Unlocked 💗</div>
-                <p>
-                  After the massage: I’m officially assigning us a “slow walk” home —
-                  hand in hand like the opening scene of a love story.
-                </p>
-              </div>
-            </div>
-          </article>
-
-          <!-- STOP 2 -->
-          <article class="stop" data-stop="2">
-            <div class="stop__time">
-              <div class="time">7:00 PM</div>
-              <div class="date">Feb 14</div>
-            </div>
-
-            <div class="stop__body">
-              <div class="stop__titleRow">
-                <h3>Menu Corridor — Dinner</h3>
-                <button class="heartBtn" type="button" data-unlock="2" title="Unlock moment 2">♡</button>
-              </div>
-
-              <p>
-                Dinner at 7. Candlelight energy. We’ll order what feels right, linger a little,
-                and toast to us — the kind of evening that makes time go soft.
-              </p>
-
-              <div class="mini">
-                <div class="mini__item">
-                  <span class="tag">Plan</span>
-                  <span>take our time • share bites</span>
-                </div>
-                <div class="mini__item">
-                  <span class="tag">Toast</span>
-                  <span>to Romana & us 🥂</span>
-                </div>
-              </div>
-
-              <div class="links">
-                <a class="linkBtn" href="https://www.menucorridor.nl/menu/" target="_blank" rel="noreferrer">
-                  Menu page
-                </a>
-                <a class="linkBtn" id="mapDinner" target="_blank" rel="noreferrer">Open in Maps</a>
-              </div>
-
-              <div class="unlock hidden" id="unlock2">
-                <div class="unlock__badge">Unlocked 💗</div>
-                <p>
-                  Tiny challenge: I’ll say one thing I love about you between courses.
-                  If I forget, you get to steal a bite from my plate — no negotiations.
-                </p>
-              </div>
-            </div>
-          </article>
-
-          <!-- STOP 3 -->
-          <article class="stop" data-stop="3">
-            <div class="stop__time">
-              <div class="time">After dinner</div>
-              <div class="date">Feb 14</div>
-            </div>
-
-            <div class="stop__body">
-              <div class="stop__titleRow">
-                <h3>De Koepel / FilmKoepel — “Marty Supreme”</h3>
-                <button class="heartBtn" type="button" data-unlock="3" title="Unlock moment 3">♡</button>
-              </div>
-
-              <p>
-                The grand finale: we disappear into a story together.
-                And when it’s over, Haarlem at night — warm air, quiet streets, and our little post-movie debrief.
-              </p>
-
-              <div class="mini">
-                <div class="mini__item">
-                  <span class="tag">Seats</span>
-                  <span>close enough for shared popcorn 😌</span>
-                </div>
-                <div class="mini__item">
-                  <span class="tag">After</span>
-                  <span>slow walk • cozy recap • maybe dessert?</span>
-                </div>
-              </div>
-
-              <div class="links">
-                <a class="linkBtn" href="https://filmkoepel.nl/films/marty-supreme/" target="_blank" rel="noreferrer">
-                  Film page
-                </a>
-                <a class="linkBtn" id="mapMovie" target="_blank" rel="noreferrer">Open in Maps</a>
-              </div>
-
-              <div class="unlock hidden" id="unlock3">
-                <div class="unlock__badge">Unlocked 💗</div>
-                <p>
-                  If you say yes: you pick the post-movie snack, and I’ll do the dramatic “movie trailer voice”
-                  recap of our day on the walk home.
-                </p>
-              </div>
-            </div>
-          </article>
-        </section>
-
-        <div class="divider"></div>
-
-        <section class="rsvp" aria-label="RSVP section">
-          <h3>Romana… will you be my Valentine? 🥺</h3>
-          <p class="sub">Pick a button. They’re both correct.</p>
-
-          <div class="ctaRow">
-            <button class="primary" id="btnYes" type="button">Yes 💘</button>
-            <button class="ghost" id="btnAlsoYes" type="button">Also yes 😄</button>
+          <div class="links">
+            <a class="btn btn-link" href="https://fivecityspa.nl/behandeling/five-full-body-massage/" target="_blank" rel="noreferrer">Massage details</a>
+            <a class="btn btn-link" id="mapSpa" target="_blank" rel="noreferrer">Map</a>
           </div>
 
-          <div class="tools">
-            <button class="ghost" id="btnCalendar" type="button">📅 Add to Calendar (.ics)</button>
-            <button class="ghost" id="btnCopy" type="button">🔗 Copy share text</button>
+          <div class="note hidden" id="unlock1">
+            <div class="note__label">Production note</div>
+            <div class="note__text">Afterwards, we walk home slowly. No rushing. Hands included.</div>
+          </div>
+        </article>
+
+        <!-- Chapter 2 -->
+        <article class="chapter">
+          <div class="chapter__head">
+            <div class="chapter__num">II</div>
+            <div class="chapter__titles">
+              <div class="chapter__kicker">Chapter Two</div>
+              <h2>Menu Corridor</h2>
+              <div class="chapter__sub">7:00 PM • dinner</div>
+            </div>
+            <button class="heart" data-unlock="2" title="Open note">✶</button>
           </div>
 
-          <div class="note hidden" id="note"></div>
-        </section>
+          <p class="chapter__text">
+            A proper meal with proper conversation. We order what we want. We linger politely.
+          </p>
 
-        <footer class="footer">
-          <span>Made for Romana — with love & a tiny bit of JavaScript.</span>
-        </footer>
+          <div class="links">
+            <a class="btn btn-link" href="https://www.menucorridor.nl/menu/" target="_blank" rel="noreferrer">Menu</a>
+            <a class="btn btn-link" id="mapDinner" target="_blank" rel="noreferrer">Map</a>
+          </div>
+
+          <div class="note hidden" id="unlock2">
+            <div class="note__label">Production note</div>
+            <div class="note__text">A toast is planned. The subject is you. The tone is sincere.</div>
+          </div>
+        </article>
+
+        <!-- Chapter 3 -->
+        <article class="chapter">
+          <div class="chapter__head">
+            <div class="chapter__num">III</div>
+            <div class="chapter__titles">
+              <div class="chapter__kicker">Chapter Three</div>
+              <h2>FilmKoepel (De Koepel)</h2>
+              <div class="chapter__sub">after dinner • “Marty Supreme”</div>
+            </div>
+            <button class="heart" data-unlock="3" title="Open note">✶</button>
+          </div>
+
+          <p class="chapter__text">
+            We sit, we watch, we emerge into Haarlem at night. We conduct a short debrief on the walk home.
+          </p>
+
+          <div class="links">
+            <a class="btn btn-link" href="https://filmkoepel.nl/films/marty-supreme/" target="_blank" rel="noreferrer">Film page</a>
+            <a class="btn btn-link" id="mapMovie" target="_blank" rel="noreferrer">Map</a>
+          </div>
+
+          <div class="note hidden" id="unlock3">
+            <div class="note__label">Production note</div>
+            <div class="note__text">Popcorn logistics will be handled. Your seat will be excellent.</div>
+          </div>
+        </article>
+      </div>
+
+      <div class="intertitle intertitle--small">
+        <div class="intertitle__rule"></div>
+        <div class="intertitle__text">THE QUESTION</div>
+        <div class="intertitle__rule"></div>
+      </div>
+
+      <section class="rsvp">
+        <h3>Romana, will you go on this date with me?</h3>
+        <p class="rsvp__sub">You can respond with calm confidence.</p>
+
+        <div class="actions actions--center">
+          <button class="btn btn-primary" id="btnYes">Yes</button>
+          <button class="btn" id="btnAlsoYes">Yes (alternative phrasing)</button>
+        </div>
+
+        <div class="actions actions--center">
+          <button class="btn btn-small" id="btnCalendar">Add to Calendar</button>
+          <button class="btn btn-small" id="btnCopy">Copy message</button>
+        </div>
+
+        <div class="reply hidden" id="reply"></div>
       </section>
-    </main>
 
-    <canvas id="fx" aria-hidden="true"></canvas>
+      <footer class="footer">
+        <div class="footer__row">
+          <span>Made in Haarlem</span>
+          <span>For Romana</span>
+          <span>With good intentions</span>
+        </div>
+      </footer>
+    </section>
+  </main>
 
-    <script src="script.js"></script>
-  </body>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <script src="script.js"></script>
+</body>
 </html>
