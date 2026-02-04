@@ -986,3 +986,21 @@ h2{
   font-size: clamp(28px, 5vw, 60px) !important;
   line-height: 1.1;
 }
+/* Heart cursor using inline SVG (no image upload needed) */
+body {
+  cursor: url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'>\
+    <path fill='%23d72b3f' d='M12 21s-6.7-4.35-9.33-8.28C.4 9.27 2.02 5.5 5.5 5.5c2.04 0 3.27 1.2 4 2.2.73-1 1.96-2.2 4-2.2 3.48 0 5.1 3.77 2.83 7.22C18.7 16.65 12 21 12 21z'/>\
+  </svg>") 12 12, auto;
+}
+
+/* Keep heart cursor for clickable elements too */
+button,
+a,
+.home-link,
+.envelope {
+  cursor: url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'>\
+    <path fill='%23d72b3f' d='M12 21s-6.7-4.35-9.33-8.28C.4 9.27 2.02 5.5 5.5 5.5c2.04 0 3.27 1.2 4 2.2.73-1 1.96-2.2 4-2.2 3.48 0 5.1 3.77 2.83 7.22C18.7 16.65 12 21 12 21z'/>\
+  </svg>") 12 12, pointer;
+}
