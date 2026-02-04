@@ -3,23 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ROMANA — A Small Valentine Picture</title>
+  <title>ROMANA • A Small Valentine Picture</title>
   <link rel="stylesheet" href="styles.css" />
   <meta name="description" content="A Valentine invite in Haarlem: massage, dinner, film." />
 </head>
 
 <body>
+  <!-- soft paper texture + floating hearts -->
   <div class="paper" aria-hidden="true"></div>
+  <div class="float-hearts" aria-hidden="true"></div>
 
   <header class="masthead">
     <div class="masthead__inner">
-      <div class="stamp">Haarlem</div>
+      <div class="stamp stamp--pink">Haarlem</div>
+
       <div class="masthead__title">
         <div class="suptitle">a small valentine picture, in three chapters</div>
         <h1>ROMANA</h1>
         <div class="subtitle">February 14 • 1:00 PM • Haarlem, NL</div>
       </div>
-      <div class="stamp">14 FEB</div>
+
+      <div class="stamp stamp--red">14 FEB</div>
     </div>
   </header>
 
@@ -30,12 +34,13 @@
         <div class="titlecard__left">
           <div class="label">INVITATION</div>
           <p class="lede">
-            Pomaha Marie, please join me for a day filled with relaxation, good food, and 
+            Pomaha Marie, please join me for a day filled with relaxation, good food, and
             Timmy Chalamet playing table tennis (but not as well as you, my star)
           </p>
 
           <div class="actions">
             <button class="btn btn-primary" id="btnOpen">Begin the picture</button>
+            <button class="btn btn-heart" id="btnHearts" title="Throw hearts">Hearts</button>
           </div>
 
           <div class="fineprint">
@@ -57,22 +62,23 @@
 
           <div class="soundtrack">
             <div class="soundtrack__title">Soundtrack</div>
+
             <div class="soundtrack__row">
               <button class="btn btn-small" id="btnMusic">Play</button>
               <button class="btn btn-small" id="btnMusicStop">Stop</button>
               <a class="btn btn-small" id="btnMusicLink" target="_blank" rel="noreferrer">Open</a>
             </div>
+
             <div class="soundtrack__note">
               “Let’s Stay Together” by Al Green <br />
               Tap Play (browsers require a click).
             </div>
 
-            <!-- Optional: keep this hidden by default. Toggle it on if you want the visible player. -->
-            <details class="player">
-              <summary>Show the player</summary>
+            <div class="player hidden" id="playerBox">
               <iframe
-                style="border-radius:14px"
-                src=""
+                data-testid="embed-iframe"
+                style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/63xdwScd1Ai1GigAwQxE8y?utm_source=generator"
                 width="100%"
                 height="152"
                 frameborder="0"
@@ -81,7 +87,7 @@
                 id="spotifyEmbed"
                 title="Spotify player"
               ></iframe>
-            </details>
+            </div>
           </div>
         </div>
       </div>
@@ -112,7 +118,7 @@
               <h2>Five City Spa</h2>
               <div class="chapter__sub">1:00 PM • one hour • three-minute walk</div>
             </div>
-            <button class="heart" data-unlock="1" title="Open note">✶</button>
+            <button class="heart" data-unlock="1" title="Open note">♥</button>
           </div>
 
           <p class="chapter__text">
@@ -139,11 +145,11 @@
               <h2>Menu Corridor</h2>
               <div class="chapter__sub">7:00 PM • dinner</div>
             </div>
-            <button class="heart" data-unlock="2" title="Open note">✶</button>
+            <button class="heart" data-unlock="2" title="Open note">♥</button>
           </div>
 
           <p class="chapter__text">
-            A yummy, fancy meal with wine and yapping about if our waitor is openly gay, still in the closet or neurodivergent (like us).   
+            A yummy, fancy meal with wine and yapping about if our waitor is openly gay, still in the closet or neurodivergent (like us).
           </p>
 
           <div class="links">
@@ -166,11 +172,11 @@
               <h2>FilmKoepel (De Koepel)</h2>
               <div class="chapter__sub">after dinner • “Marty Supreme”</div>
             </div>
-            <button class="heart" data-unlock="3" title="Open note">✶</button>
+            <button class="heart" data-unlock="3" title="Open note">♥</button>
           </div>
 
           <p class="chapter__text">
-           This is where we’ll discuss your heroic return to table tennis after watching Marty Supreme… and why the future of Saastorm clearly lies in opening an office inside De Koepel.      
+            This is where we’ll discuss your heroic return to table tennis after watching Marty Supreme… and why the future of Saastorm clearly lies in opening an office inside De Koepel.
           </p>
 
           <div class="links">
@@ -180,7 +186,7 @@
 
           <div class="note hidden" id="unlock3">
             <div class="note__label">Production note</div>
-            <div class="note__text"> I will buy you popcorn and any sour candy you want. We also have amazing seats! (Middle, center) </div>
+            <div class="note__text">I will buy you popcorn and any sour candy you want. We also have amazing seats! (Middle, center)</div>
           </div>
         </article>
       </div>
@@ -193,7 +199,7 @@
 
       <section class="rsvp">
         <h3>Romoni, will you go on this date with me?</h3>
-        <p class="rsvp__sub"> Plzz say yes.</p>
+        <p class="rsvp__sub">Plzz say yes.</p>
 
         <div class="actions actions--center">
           <button class="btn btn-primary" id="btnYes">Yes</button>
