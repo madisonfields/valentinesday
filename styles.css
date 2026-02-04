@@ -953,3 +953,32 @@ h2{
   .turntable__deck{ height: 200px; }
   .tonearm{ right: 6px; }
 }
+
+/* CENTER THE MAIN TITLE HEADER */
+.masthead {
+  display: flex;
+  justify-content: center;
+  padding: 80px 20px 40px;
+}
+
+.masthead__inner {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: center;
+}
+
+.masthead__title {
+  text-align: center;
+}
+
+/* Optional cinematic sizing */
+.masthead h1 {
+  font-size: clamp(56px, 8vw, 110px);
+  letter-spacing: 2px;
+}
+
+.suptitle,
+.subtitle {
+  letter-spacing: 3px;
+}
