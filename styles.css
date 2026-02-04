@@ -387,6 +387,32 @@ h1{
   border-top:1px solid var(--line);
   padding-top:12px;
 }
+/* Scrapbook-style memory photo */
+.memory-photo{
+  margin-top: 18px;
+  max-width: 320px;
+  border-radius: 20px;
+  padding: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,209,220,.6));
+  border: 2px solid rgba(31,42,46,.75);
+  box-shadow: 0 20px 35px rgba(0,0,0,.12);
+  transform: rotate(-1.5deg);
+}
+
+.memory-photo img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius: 14px;
+}
+
+@media (max-width: 820px){
+  .memory-photo{
+    margin-left:auto;
+    margin-right:auto;
+    transform: rotate(0deg);
+  }
+}
 
 /* poster */
 .poster{
