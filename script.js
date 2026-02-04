@@ -2,7 +2,7 @@
 const START_ISO = "2026-02-14T13:00:00+01:00";
 const EVENT_TZ = "Europe/Amsterdam";
 
-// Map links (search links, no address needed)
+// Map links
 const MAPS = {
   spa: "https://www.google.com/maps/search/?api=1&query=Five%20City%20Spa%20Haarlem",
   dinner: "https://www.google.com/maps/search/?api=1&query=Menu%20Corridor%20Haarlem",
@@ -15,6 +15,12 @@ const MUSIC = {
 
 const $ = (id) => document.getElementById(id);
 
+// Envelope
+const envelopeStage = $("envelopeStage");
+const envelope = $("envelope");
+const page = $("page");
+
+// Page bits
 const btnOpen = $("btnOpen");
 const btnHearts = $("btnHearts");
 const invite = $("invite");
@@ -22,30 +28,61 @@ const titlecard = $("titlecard");
 const countdownEl = $("countdown");
 const reply = $("reply");
 
+// Links
 const mapSpa = $("mapSpa");
 const mapDinner = $("mapDinner");
 const mapMovie = $("mapMovie");
 
+// RSVP/tools
 const btnYes = $("btnYes");
 const btnAlsoYes = $("btnAlsoYes");
 const btnCalendar = $("btnCalendar");
 const btnCopy = $("btnCopy");
 
+// Music / record player controls
 const btnMusic = $("btnMusic");
 const btnMusicStop = $("btnMusicStop");
 const btnMusicLink = $("btnMusicLink");
 const playerBox = $("playerBox");
+const vinyl = $("vinyl");
+const tonearm = $("tonearm");
 
-// ---- Set links
-mapSpa.href = MAPS.spa;
-mapDinner.href = MAPS.dinner;
-mapMovie.href = MAPS.movie;
+// Canvas FX
+const canvas = document.getElementById("fx");
+const ctx = canvas?.getContext("2d");
+let particles = [];
 
-btnMusicLink.href = MUSIC.spotifySearch;
+// ------------------ Envelope open ------------------
+function openEnvelope() {
+  envelope.classList.add("is-open");
 
-// ---- Countdown
-setInterval(updateCountdown, 300);
-updateCountdown();
+  // Reveal page after animation
+  setTimeout(() => {
+    envelopeStage.style.display = "none";
+    page.classList.remove("page--hidden");
+
+    // Small dreamy burst
+    burst("hearts", window.innerWidth * 0.5, window.innerHeight * 0.35, 28);
+    burst("confetti", window.innerWidth * 0.5, window.innerHeight * 0.35, 14);
+  }, 900);
+}
+
+envelope?.addEventListener("click", openEnvelope);
+envelope?.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") openEnvelope();
+});
+
+// ------------------ Set links ------------------
+if (mapSpa) mapSpa.href = MAPS.spa;
+if (mapDinner) mapDinner.href = MAPS.dinner;
+if (mapMovie) mapMovie.href = MAPS.movie;
+if (btnMusicLink) btnMusicLink.href = MUSIC.spotifySearch;
+
+// ------------------ Countdown ------------------
+if (countdownEl) {
+  setInterval(updateCountdown, 300);
+  updateCountdown();
+}
 
 function updateCountdown() {
   const start = new Date(START_ISO).getTime();
@@ -66,20 +103,22 @@ function updateCountdown() {
   countdownEl.textContent = `${days}d ${pad(hours)}h ${pad(minutes)}m`;
 }
 
-// ---- Open
-btnOpen.addEventListener("click", () => {
-  titlecard.classList.add("hidden");
-  invite.classList.remove("hidden");
-  invite.scrollIntoView({ behavior: "smooth", block: "start" });
+// ------------------ Begin the picture ------------------
+btnOpen?.addEventListener("click", () => {
+  titlecard?.classList.add("hidden");
+  invite?.classList.remove("hidden");
+  invite?.scrollIntoView({ behavior: "smooth", block: "start" });
   burst("hearts", window.innerWidth * 0.5, 140, 24);
   burst("confetti", window.innerWidth * 0.5, 170, 16);
 });
 
-// ---- Notes toggles
+// ------------------ Notes toggles ------------------
 document.querySelectorAll(".heart").forEach((b) => {
   b.addEventListener("click", () => {
     const id = b.dataset.unlock;
     const box = $(`unlock${id}`);
+    if (!box) return;
+
     const isOpen = !box.classList.contains("hidden");
     if (isOpen) {
       box.classList.add("hidden");
@@ -90,12 +129,12 @@ document.querySelectorAll(".heart").forEach((b) => {
   });
 });
 
-// ---- RSVP
-btnYes.addEventListener("click", () => respond("Accepted. The picture proceeds as scheduled."));
-btnAlsoYes.addEventListener("click", () => respond("Accepted. Yas queen."));
+// ------------------ RSVP ------------------
+btnYes?.addEventListener("click", () => respond("Accepted. The picture proceeds as scheduled."));
+btnAlsoYes?.addEventListener("click", () => respond("Accepted. Yas queen."));
 
-// ---- Copy
-btnCopy.addEventListener("click", async () => {
+// ------------------ Copy ------------------
+btnCopy?.addEventListener("click", async () => {
   const text =
 `Romana,
 
@@ -114,8 +153,8 @@ I made a small invitation page for you.`;
   }
 });
 
-// ---- Calendar (.ics)
-btnCalendar.addEventListener("click", downloadICS);
+// ------------------ Calendar (.ics) ------------------
+btnCalendar?.addEventListener("click", downloadICS);
 
 function downloadICS() {
   const dtStart = "20260214T130000";
@@ -173,6 +212,7 @@ function cryptoRandom() {
 }
 
 function respond(text) {
+  if (!reply) return;
   reply.textContent = text;
   reply.classList.remove("hidden");
   reply.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -180,31 +220,37 @@ function respond(text) {
   burst("hearts", window.innerWidth * 0.5, window.innerHeight * 0.45, 18);
 }
 
-// ---- Spotify player reveal
-btnMusic.addEventListener("click", () => {
-  playerBox.classList.remove("hidden");
-  playerBox.scrollIntoView({ behavior: "smooth", block: "center" });
-  burst("hearts", window.innerWidth * 0.72, 140, 18);
-  respond("Soundtrack ready. Press play on the player.");
-});
-
-btnMusicStop.addEventListener("click", () => {
-  playerBox.classList.add("hidden");
-  respond("Soundtrack paused. Dramatic silence.");
-});
-
-btnHearts.addEventListener("click", () => {
+// ------------------ Hearts button ------------------
+btnHearts?.addEventListener("click", () => {
   burst("hearts", window.innerWidth * 0.5, 120, 42);
 });
 
-// ---- Hearts + confetti FX
-const canvas = document.getElementById("fx");
-const ctx = canvas.getContext("2d");
-let particles = [];
+// ------------------ Record player ------------------
+btnMusic?.addEventListener("click", () => {
+  // Animate the record player
+  vinyl?.classList.add("is-spinning");
+  tonearm?.classList.add("is-playing");
 
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
-requestAnimationFrame(tick);
+  // Reveal Spotify embed
+  playerBox?.classList.remove("hidden");
+  playerBox?.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  burst("hearts", window.innerWidth * 0.72, 140, 16);
+  // Keep "Open" link as a fallback
+});
+
+btnMusicStop?.addEventListener("click", () => {
+  vinyl?.classList.remove("is-spinning");
+  tonearm?.classList.remove("is-playing");
+  playerBox?.classList.add("hidden");
+});
+
+// ------------------ Canvas FX ------------------
+if (canvas && ctx) {
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+  requestAnimationFrame(tick);
+}
 
 function resizeCanvas() {
   canvas.width = window.innerWidth * devicePixelRatio;
@@ -213,6 +259,7 @@ function resizeCanvas() {
 }
 
 function burst(kind, x, y, count) {
+  if (!ctx) return;
   for (let i = 0; i < count; i++) particles.push(makeParticle(kind, x, y));
 }
 
