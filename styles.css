@@ -973,7 +973,7 @@ h2{
 
 /* Optional cinematic sizing */
 .masthead h1 {
-  font-size: clamp(56px, 8vw, 110px);
+  font-size: clamp(44px, 8vw, 110px);
   letter-spacing: 2px;
 }
 
