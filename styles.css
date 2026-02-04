@@ -228,7 +228,7 @@ body{
 .env-from{
   /* Use TOP instead of BOTTOM so it's not too low */
   position:absolute;
-  top: 160px; /* <-- move this up/down */
+  top: 135px; /* <-- move this up/down */
   left:50%;
   transform: translateX(-50%);
   font-size: 13px;
