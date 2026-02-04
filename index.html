@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Romana, will you be my Valentine? 💘</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="description" content="A Valentine’s Day date invite in Haarlem: massage, dinner, and a movie." />
+  </head>
+
+  <body>
+    <div class="bg-hearts" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand__dot" aria-hidden="true"></span>
+        <span>Romana’s Valentine Invite</span>
+      </div>
+
+      <div class="topbar__actions">
+        <button class="ghost" id="btnHearts" type="button" title="Throw hearts">💞 Hearts</button>
+        <button class="ghost" id="btnConfetti" type="button" title="Celebrate">🎉 Confetti</button>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <!-- ENVELOPE -->
+      <section class="card envelope" id="envelope" aria-label="Open invitation">
+        <div class="envelope__lid" aria-hidden="true"></div>
+        <div class="envelope__seal" aria-hidden="true">💌</div>
+
+        <div class="envelope__content">
+          <h1>Romana,</h1>
+          <p class="lead">
+            I built you a tiny interactive invitation because I want Valentine’s Day to feel like
+            <strong>our</strong> little movie — cozy, romantic, and perfectly us — right here in <strong>Haarlem</strong>.
+          </p>
+
+          <div class="ctaRow">
+            <button class="primary" id="btnOpen" type="button">Open the invitation ✨</button>
+            <button class="ghost" id="btnPeek" type="button">Peek (no spoilers 😄)</button>
+          </div>
+
+          <p class="hint">
+            Tip: tap the heart icons on the itinerary to unlock sweet “moments.”
+          </p>
+        </div>
+      </section>
+
+      <!-- INVITE -->
+      <section class="card invite hidden" id="invite" aria-label="Valentine invitation details">
+        <div class="invite__head">
+          <div>
+            <h2>Valentine’s Day Date — Haarlem 💘</h2>
+            <p class="sub">
+              Saturday, <strong>February 14, 2026</strong> • starting at <strong>1:00 PM</strong>
+            </p>
+          </div>
+
+          <div class="countdown" aria-live="polite">
+            <div class="countdown__label">Countdown to our first stop</div>
+            <div class="countdown__time" id="countdown">—</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <section class="story">
+          <p>
+            Three chapters. One perfect day. We’ll start relaxed, then eat something delicious,
+            and end it under the dome with a film and a slow walk into the night.
+          </p>
+
+          <div class="pillRow">
+            <span class="pill">🕯️ cozy</span>
+            <span class="pill">🌷 Haarlem</span>
+            <span class="pill">🍷 dinner</span>
+            <span class="pill">🎬 cinema</span>
+          </div>
+        </section>
+
+        <section class="timeline" aria-label="Itinerary timeline">
+          <!-- STOP 1 -->
+          <article class="stop" data-stop="1">
+            <div class="stop__time">
+              <div class="time">1:00 PM</div>
+              <div class="date">Feb 14</div>
+            </div>
+
+            <div class="stop__body">
+              <div class="stop__titleRow">
+                <h3>Five City Spa — “Five Full Body Massage” (1 hour)</h3>
+                <button class="heartBtn" type="button" data-unlock="1" title="Unlock moment 1">♡</button>
+              </div>
+
+              <p>
+                We kick off the day with a full reset: calm, warm, and quiet.
+                A little “pause button” before the rest of the romance.
+              </p>
+
+              <div class="mini">
+                <div class="mini__item">
+                  <span class="tag">Walk</span>
+                  <span>~3 minutes from our house</span>
+                </div>
+                <div class="mini__item">
+                  <span class="tag">Vibe</span>
+                  <span>soft music • relaxed smiles • zero rush</span>
+                </div>
+              </div>
+
+              <div class="links">
+                <a class="linkBtn" href="https://fivecityspa.nl/behandeling/five-full-body-massage/" target="_blank" rel="noreferrer">
+                  Massage page
+                </a>
+                <a class="linkBtn" id="mapSpa" target="_blank" rel="noreferrer">Open in Maps</a>
+              </div>
+
+              <div class="unlock hidden" id="unlock1">
+                <div class="unlock__badge">Unlocked 💗</div>
+                <p>
+                  After the massage: I’m officially assigning us a “slow walk” home —
+                  hand in hand like the opening scene of a love story.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- STOP 2 -->
+          <article class="stop" data-stop="2">
+            <div class="stop__time">
+              <div class="time">7:00 PM</div>
+              <div class="date">Feb 14</div>
+            </div>
+
+            <div class="stop__body">
+              <div class="stop__titleRow">
+                <h3>Menu Corridor — Dinner</h3>
+                <button class="heartBtn" type="button" data-unlock="2" title="Unlock moment 2">♡</button>
+              </div>
+
+              <p>
+                Dinner at 7. Candlelight energy. We’ll order what feels right, linger a little,
+                and toast to us — the kind of evening that makes time go soft.
+              </p>
+
+              <div class="mini">
+                <div class="mini__item">
+                  <span class="tag">Plan</span>
+                  <span>take our time • share bites</span>
+                </div>
+                <div class="mini__item">
+                  <span class="tag">Toast</span>
+                  <span>to Romana & us 🥂</span>
+                </div>
+              </div>
+
+              <div class="links">
+                <a class="linkBtn" href="https://www.menucorridor.nl/menu/" target="_blank" rel="noreferrer">
+                  Menu page
+                </a>
+                <a class="linkBtn" id="mapDinner" target="_blank" rel="noreferrer">Open in Maps</a>
+              </div>
+
+              <div class="unlock hidden" id="unlock2">
+                <div class="unlock__badge">Unlocked 💗</div>
+                <p>
+                  Tiny challenge: I’ll say one thing I love about you between courses.
+                  If I forget, you get to steal a bite from my plate — no negotiations.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- STOP 3 -->
+          <article class="stop" data-stop="3">
+            <div class="stop__time">
+              <div class="time">After dinner</div>
+              <div class="date">Feb 14</div>
+            </div>
+
+            <div class="stop__body">
+              <div class="stop__titleRow">
+                <h3>De Koepel / FilmKoepel — “Marty Supreme”</h3>
+                <button class="heartBtn" type="button" data-unlock="3" title="Unlock moment 3">♡</button>
+              </div>
+
+              <p>
+                The grand finale: we disappear into a story together.
+                And when it’s over, Haarlem at night — warm air, quiet streets, and our little post-movie debrief.
+              </p>
+
+              <div class="mini">
+                <div class="mini__item">
+                  <span class="tag">Seats</span>
+                  <span>close enough for shared popcorn 😌</span>
+                </div>
+                <div class="mini__item">
+                  <span class="tag">After</span>
+                  <span>slow walk • cozy recap • maybe dessert?</span>
+                </div>
+              </div>
+
+              <div class="links">
+                <a class="linkBtn" href="https://filmkoepel.nl/films/marty-supreme/" target="_blank" rel="noreferrer">
+                  Film page
+                </a>
+                <a class="linkBtn" id="mapMovie" target="_blank" rel="noreferrer">Open in Maps</a>
+              </div>
+
+              <div class="unlock hidden" id="unlock3">
+                <div class="unlock__badge">Unlocked 💗</div>
+                <p>
+                  If you say yes: you pick the post-movie snack, and I’ll do the dramatic “movie trailer voice”
+                  recap of our day on the walk home.
+                </p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="rsvp" aria-label="RSVP section">
+          <h3>Romana… will you be my Valentine? 🥺</h3>
+          <p class="sub">Pick a button. They’re both correct.</p>
+
+          <div class="ctaRow">
+            <button class="primary" id="btnYes" type="button">Yes 💘</button>
+            <button class="ghost" id="btnAlsoYes" type="button">Also yes 😄</button>
+          </div>
+
+          <div class="tools">
+            <button class="ghost" id="btnCalendar" type="button">📅 Add to Calendar (.ics)</button>
+            <button class="ghost" id="btnCopy" type="button">🔗 Copy share text</button>
+          </div>
+
+          <div class="note hidden" id="note"></div>
+        </section>
+
+        <footer class="footer">
+          <span>Made for Romana — with love & a tiny bit of JavaScript.</span>
+        </footer>
+      </section>
+    </main>
+
+    <canvas id="fx" aria-hidden="true"></canvas>
+
+    <script src="script.js"></script>
+  </body>
+</html>
